@@ -1,0 +1,5 @@
+steps:
+  - label: ':docker: DataEng Service Base'
+    plugins:
+      - seek-oss/docker-ecr-publish#v1.2.0:
+          ecr-name: dataeng-service-base

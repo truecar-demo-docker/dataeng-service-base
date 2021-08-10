@@ -5,10 +5,13 @@ ARG DATADOG_AGENT_JAR='https://search.maven.org/classic/remote_content?g=com.dat
 RUN LC_ALL=C apt-get update -yqq && \
     LC_ALL=C apt-get dist-upgrade -yqq && \
     LC_ALL=C apt-get install -yqq --no-install-recommends \
+    awscli \
     ca-certificates \
     curl \
     groff \
+    jq \
     openssl \
+    wget \
     tini && \
     rm -f /usr/local/tomcat/conf/logging.properties
 

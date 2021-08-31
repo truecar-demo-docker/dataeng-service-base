@@ -25,4 +25,7 @@ export CATALINA_OPTS="${CATALINA_OPTS} -Xmx${jvm_memory}m \
                       -Djava.rmi.server.hostname=localhost \
                       -javaagent:/usr/local/tomcat/dd-java-agent.jar"
 
+# create keytab file
+echo "${CDP_KEYTAB?}" | base64 -d > /usr/local/tomcat/webapps/keytab
+
 exec catalina.sh run

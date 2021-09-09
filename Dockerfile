@@ -13,7 +13,8 @@ RUN LC_ALL=C apt-get update -yqq && \
     openssl \
     wget \
     tini && \
-    rm -f /usr/local/tomcat/conf/logging.properties
+    rm -f /usr/local/tomcat/conf/logging.properties && \
+    ln -s /usr/bin/tini /sbin/tini
 
 # install datadog agent
 ADD ${DATADOG_AGENT_JAR} /usr/local/tomcat/dd-java-agent.jar
@@ -26,7 +27,3 @@ COPY krb5.conf /usr/local/tomcat/webapps/
 WORKDIR /usr/local/tomcat
 
 EXPOSE 8080 9010 8009
-
-ENTRYPOINT ["/usr/bin/tini", "--"]
-
-CMD ["./start.sh"]

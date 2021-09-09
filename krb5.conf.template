@@ -3,7 +3,7 @@
   kdc = FILE:/var/log/krb5kdc.log
   admin_server = FILE:/var/log/kadmind.log
 [libdefaults]
-  default_realm = CDP-DEV.TSB7-PCR5.CLOUDERA.SITE
+  default_realm = %%REALM%%
   dns_lookup_realm = true
   dns_lookup_kdc = true
   rdns = false
@@ -14,13 +14,13 @@
   default_ccache_name = /tmp/krb5cc_%{uid}
   renew_lifetime = 7d
 [realms]
-CDP-DEV.TSB7-PCR5.CLOUDERA.SITE = {
-  kdc = ipaserver0.tc-internal.CDP-DEV.TSB7-PCR5.CLOUDERA.SITE:88
-  master_kdc = ipaserver0.tc-internal.CDP-DEV.TSB7-PCR5.CLOUDERA.SITE:88
-  admin_server = ipaserver0.tc-internal.CDP-DEV.TSB7-PCR5.CLOUDERA.SITE:749
+%%REALM%% = {
+  kdc = %%KDC%%:88
+  master_kdc = %%KDC%%:88
+  admin_server = %%KDC%%:749
   pkinit_anchors = FILE:/var/lib/ipa-client/pki/kdc-ca-bundle.pem
   pkinit_pool = FILE:/var/lib/ipa-client/pki/ca-bundle.pem
 }
 [domain_realm]
-  .cdp-dev.tsb7-pcr5.cloudera.site = CDP-DEV.TSB7-PCR5.CLOUDERA.SITE
-  cdp-dev.tsb7-pcr5.cloudera.site = CDP-DEV.TSB7-PCR5.CLOUDERA.SITE
+  .%%REALM_L%% = %%REALM%%
+  %%REALM_L%% = %%REALM%%

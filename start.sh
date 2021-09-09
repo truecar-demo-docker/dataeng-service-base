@@ -8,8 +8,18 @@ die() { echo "$@" ; exit 1; }
 [[ -z "${APP_CONTAINER_MEMORY}" ]] && \
   die "\$APP_CONTAINER_MEMORY is not set!"
 
+[[ -z "${REALM}" ]] && \
+  die "\$REALM is not set!"
+
+[[ -z "${KDC}" ]] && \
+  die "\$KDC is not set!"
+
 sed -e "s!%%LOG_LEVEL%%!${LOG_LEVEL}!" \
     < log4j.properties.template > /usr/local/tomcat/lib/log4j.properties
+
+sed -e "s!%%REALM%%!${REALM}!" \
+    -e "s!%%REALM_L%%!${REALM,,}!" \
+    -e "s!%%KDC%%!${KDC}!" < krb5.conf.template > /usr/local/tomcat/webapps/krb5.conf
 
 jvm_memory=$((APP_CONTAINER_MEMORY * 75 / 100))
 

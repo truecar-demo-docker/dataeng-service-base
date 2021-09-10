@@ -38,4 +38,7 @@ export CATALINA_OPTS="${CATALINA_OPTS} -Xmx${jvm_memory}m \
 # create keytab file
 echo "${CDP_KEYTAB?}" | base64 -d > /usr/local/tomcat/webapps/keytab
 
+# source local.sh if it exists
+[[ -s ./local.sh ]] && source ./local.sh
+
 exec catalina.sh run

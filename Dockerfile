@@ -21,7 +21,7 @@ ADD ${DATADOG_AGENT_JAR} /usr/local/tomcat/dd-java-agent.jar
 
 COPY server.xml /usr/local/tomcat/conf/
 COPY log4j.properties.template /usr/local/tomcat/
-COPY krb5.conf.template /usr/local/tomcat/webapps/
+COPY krb5.conf.template /usr/local/tomcat/
 COPY start.sh /usr/local/tomcat/
 
 WORKDIR /usr/local/tomcat
